@@ -3,7 +3,7 @@
 #include "imgui.h"
 #include "Engine/Application.h"
 
-class ExampleLayer : public lve::Layer {
+class ExampleLayer : public RayTracer::Layer {
 public:
     void OnUIRender() override {
         ImGui::Begin("Hello");
@@ -18,10 +18,10 @@ int main(int, char**)
 {
     while (g_ApplicationRunning)
     {
-        lve::ApplicationSpecification spec;
+        RayTracer::ApplicationSpecification spec;
         spec.Name = "RayTracing Example";
 
-        auto* app = new lve::Application(spec);
+        auto* app = new RayTracer::Application(spec);
         app->PushLayer<ExampleLayer>();
         app->SetMenubarCallback([app]() {
             if (ImGui::BeginMenu("File")) {

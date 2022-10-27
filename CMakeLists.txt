@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.23)
-project(lge)
+project(ray_tracer)
 
 set(CMAKE_CXX_STANDARD 17)
 
@@ -27,7 +27,7 @@ include_directories(${GLFW_DIR}/deps)
 
 file(GLOB sources Engine/*.cpp Engine/*.h)
 
-add_executable(gle
+add_executable(engine
         ${sources}
         main.cpp
         ${IMGUI_DIR}/backends/imgui_impl_glfw.cpp
@@ -42,7 +42,7 @@ add_executable(gle
 
 # GLM
 add_subdirectory(vendor/glm)
-target_include_directories(gle PUBLIC vendor/glm)
+target_include_directories(engine PUBLIC vendor/glm)
 
-target_link_libraries(gle ${LIBRARIES})
-target_compile_definitions(gle PUBLIC -DImTextureID=ImU64)
+target_link_libraries(engine ${LIBRARIES})
+target_compile_definitions(engine PUBLIC -DImTextureID=ImU64)

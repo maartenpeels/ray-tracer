@@ -62,7 +62,7 @@ static std::vector<std::vector<std::function<void()>>> s_ResourceFreeQueue;
 // and is always guaranteed to increase (eg. 0, 1, 2, 0, 1, 2)
 static uint32_t s_CurrentFrameIndex = 0;
 
-static lve::Application *s_Instance = nullptr;
+static RayTracer::Application *s_Instance = nullptr;
 
 static void check_vk_result(VkResult err)
 {
@@ -378,7 +378,7 @@ static void glfw_error_callback(int error, const char* description)
     fprintf(stderr, "Glfw Error %d: %s\n", error, description);
 }
 
-namespace lve {
+namespace RayTracer {
     Application::Application(const ApplicationSpecification &applicationSpecification) {
         m_Specification = applicationSpecification;
         s_Instance = this;
@@ -663,4 +663,4 @@ namespace lve {
 
         g_ApplicationRunning = false;
     }
-} // lve
+} // RayTracer

@@ -5,7 +5,7 @@
 #ifndef LGE_LAYER_H
 #define LGE_LAYER_H
 
-namespace lve {
+namespace RayTracer {
     class Layer
     {
     public:

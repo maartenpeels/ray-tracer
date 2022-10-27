@@ -14,7 +14,7 @@
 
 struct GLFWwindow;
 
-namespace lve {
+namespace RayTracer {
 
     struct ApplicationSpecification
     {
@@ -64,6 +64,6 @@ namespace lve {
     // Implemented by CLIENT
     Application* CreateApplication(int argc, char** argv);
 
-} // lve
+} // RayTracer
 
 #endif //LGE_APPLICATION_H
