@@ -25,10 +25,12 @@ set(LIBRARIES "glfw;Vulkan::Vulkan")
 # Use vulkan headers from glfw:
 include_directories(${GLFW_DIR}/deps)
 
-file(GLOB sources Engine/*.cpp Engine/*.h)
+file(GLOB sources_engine Engine/*.cpp Engine/*.h)
+file(GLOB sources_app App/*.cpp App/*.h)
 
 add_executable(engine
-        ${sources}
+        ${sources_engine}
+        ${sources_app}
         main.cpp
         ${IMGUI_DIR}/backends/imgui_impl_glfw.cpp
         ${IMGUI_DIR}/backends/imgui_impl_vulkan.cpp
@@ -42,7 +44,10 @@ add_executable(engine
 
 # GLM
 add_subdirectory(vendor/glm)
-target_include_directories(engine PUBLIC vendor/glm)
+target_include_directories(engine PUBLIC vendor/glm vendor/stb_image)
 
 target_link_libraries(engine ${LIBRARIES})
 target_compile_definitions(engine PUBLIC -DImTextureID=ImU64)
+
+# Allow easy imports
+include_directories(./)
