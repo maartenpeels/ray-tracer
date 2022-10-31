@@ -50,7 +50,6 @@ namespace RayTracer {
             }
             return (VkFormat)0;
         }
-
     }
 
     Image::Image(std::string_view path)

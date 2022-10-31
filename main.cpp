@@ -16,6 +16,8 @@ public:
         if (ImGui::Button("Render")) {
             Render();
         }
+        ImGui::Checkbox("Render Automatically", &m_RenderAutomatically);
+
         ImGui::End();
 
         ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0, 0));
@@ -25,15 +27,16 @@ public:
         m_ViewportHeight = static_cast<uint32_t>(ImGui::GetContentRegionAvail().y);
 
         auto image = m_Renderer.GetFinalImage();
-        if (image) {
+        if (image)
             ImGui::Image(reinterpret_cast<ImU64>(image->GetDescriptorSet()),
-                         {(float) image->GetWidth(), (float) image->GetHeight()});
-        }
+                         {(float) image->GetWidth(), (float) image->GetHeight()},
+                         {0, 1}, {1, 0});
 
         ImGui::End();
         ImGui::PopStyleVar();
 
-        Render();
+        if (m_RenderAutomatically)
+            Render();
     }
 
     void Render() {
@@ -49,6 +52,7 @@ private:
     Renderer m_Renderer;
     uint32_t m_ViewportWidth = 0, m_ViewportHeight = 0;
     float m_LastRenderTime = 0;
+    bool m_RenderAutomatically;
 };
 
 bool g_ApplicationRunning = true;
